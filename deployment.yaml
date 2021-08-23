@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${{FD_PROJECT_NAME}}-deployment
+  labels:
+    app: ${{FD_PROJECT_NAME}}
+spec:    
+  selector:
+    matchLabels:
+      app: ${{FD_PROJECT_NAME}}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ${{FD_PROJECT_NAME}}
+    spec:
+      containers:
+      - name: ${{FD_PROJECT_NAME}}
+        image: ${{FD_PROJECT_DOCKER_IMAGE_NAME}}
+        ports:
+        - containerPort: 9080
